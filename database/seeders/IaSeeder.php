@@ -97,6 +97,63 @@ class IaSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
+            [
+                'nombre' => 'Wondershare',
+                'logo' => 'ias/wondershare.png',
+                'descripcion' => 'Herramientas de software para edición de video, PDF, recuperación de datos y más.',
+                'estado' => true,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'nombre' => 'Digiface',
+                'logo' => 'ias/digiface.png',
+                'descripcion' => 'Plataforma de inteligencia artificial especializada en reconocimiento facial y análisis de imágenes.',
+                'estado' => true,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'nombre' => 'Minimax AI',
+                'logo' => 'ias/minimaxai.png',
+                'descripcion' => 'Solución de IA para optimización y automatización de procesos empresariales.',
+                'estado' => true,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+
+            [
+                'nombre' => 'Viggle',
+                'logo' => 'ias/viggle.png',
+                'descripcion' => 'Herramienta de IA para análisis de datos en tiempo real y toma de decisiones inteligentes.',
+                'estado' => true,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'nombre' => 'Krea',
+                'logo' => 'ias/krea.png',
+                'descripcion' => 'Plataforma de IA para la creación de contenido visual y diseño generativo.',
+                'estado' => true,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'nombre' => 'LivePortrait',
+                'logo' => 'ias/liveportrait.png',
+                'descripcion' => 'Tecnología de IA que genera retratos animados a partir de imágenes estáticas.',
+                'estado' => true,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'nombre' => 'Adobe Express',
+                'logo' => 'ias/adobe_express.png',
+                'descripcion' => 'Herramienta de diseño gráfico y creación de contenido basada en IA, fácil de usar y en la nube.',
+                'estado' => true,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
          ];
  
          // Insertar datos
