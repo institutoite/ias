@@ -19,4 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/ias', [IaController::class, 'index']);
+Route::get('/ias', [IAController::class, 'index']);
+Route::get('/categorias', [IAController::class, 'categorias']);
+Route::get('/ias/categoria/{categoriaId}', [IAController::class, 'porCategoria']);

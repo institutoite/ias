@@ -1,13 +1,47 @@
 // Elementos DOM
 const iaContainer = document.getElementById("ia-container")
 const searchInput = document.getElementById("search-input")
-const filterButtons = document.querySelectorAll(".filter-btn")
+const categoriaSelect = document.getElementById("categoria-select")
 
-// Estado actual del filtro y datos
-let currentFilter = "all"
+// Estado actual y datos
 let allIAs = []
+let allCategorias = []
+let currentCategoriaId = "all"
 
-// Función para obtener los datos de la API de Laravel
+// Función para obtener las categorías
+async function fetchCategorias() {
+  try {
+    const response = await fetch("/api/categorias")
+
+    if (!response.ok) {
+      throw new Error("Error al cargar las categorías")
+    }
+
+    const data = await response.json()
+    allCategorias = data
+
+    // Llenar el selector de categorías
+    renderCategoriaOptions()
+  } catch (error) {
+    console.error("Error:", error)
+  }
+}
+
+// Función para renderizar las opciones de categorías
+function renderCategoriaOptions() {
+  // Mantener la opción "Todas las categorías"
+  categoriaSelect.innerHTML = '<option value="all">Todas las categorías</option>'
+
+  // Agregar cada categoría como una opción
+  allCategorias.forEach((categoria) => {
+    const option = document.createElement("option")
+    option.value = categoria.id
+    option.textContent = categoria.categoria
+    categoriaSelect.appendChild(option)
+  })
+}
+
+// Función para obtener las IAs
 async function fetchIAs() {
   try {
     // Mostrar loader mientras se cargan los datos
@@ -17,8 +51,14 @@ async function fetchIAs() {
             </div>
         `
 
+    // Determinar qué endpoint usar según la categoría seleccionada
+    let url = "/api/ias"
+    if (currentCategoriaId !== "all") {
+      url = `/api/ias/categoria/${currentCategoriaId}`
+    }
+
     // Realizar la petición a la API de Laravel
-    const response = await fetch("/api/ias")
+    const response = await fetch(url)
 
     if (!response.ok) {
       throw new Error("Error al cargar los datos")
@@ -60,11 +100,10 @@ function renderIAs(iasToRender) {
             <div class="ia-content">
                 <div class="ia-header">
                     <h2 class="ia-name">${ia.nombre}</h2>
-                    <span class="ia-status ${ia.estado ? "status-active" : "status-inactive"}">
-                        ${ia.estado ? "Activa" : "Inactiva"}
-                    </span>
+                    <span class="ia-categoria">${ia.categoria ? ia.categoria.categoria : "Sin categoría"}</span>
                 </div>
                 <p class="ia-description">${ia.descripcion}</p>
+                <a href="${ia.url}" target="_blank" class="ia-link">Visitar</a>
             </div>
         `
 
@@ -78,16 +117,13 @@ function filterIAs() {
 
   let filteredIAs = allIAs
 
-  // Aplicar filtro de estado
-  if (currentFilter !== "all") {
-    const isActive = currentFilter === "active"
-    filteredIAs = filteredIAs.filter((ia) => ia.estado === isActive)
-  }
-
   // Aplicar búsqueda
   if (searchTerm) {
     filteredIAs = filteredIAs.filter(
-      (ia) => ia.nombre.toLowerCase().includes(searchTerm) || ia.descripcion.toLowerCase().includes(searchTerm),
+      (ia) =>
+        ia.nombre.toLowerCase().includes(searchTerm) ||
+        ia.descripcion.toLowerCase().includes(searchTerm) ||
+        (ia.categoria && ia.categoria.categoria.toLowerCase().includes(searchTerm)),
     )
   }
 
@@ -97,20 +133,17 @@ function filterIAs() {
 // Event Listeners
 searchInput.addEventListener("input", filterIAs)
 
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    // Actualizar botones activos
-    filterButtons.forEach((btn) => btn.classList.remove("active"))
-    button.classList.add("active")
-
-    // Actualizar filtro actual
-    currentFilter = button.getAttribute("data-filter")
-
-    // Aplicar filtros
-    filterIAs()
-  })
+categoriaSelect.addEventListener("change", () => {
+  currentCategoriaId = categoriaSelect.value
+  fetchIAs()
 })
 
-// Cargar datos al iniciar la página
-document.addEventListener("DOMContentLoaded", fetchIAs)
+// Inicializar la página
+document.addEventListener("DOMContentLoaded", async () => {
+  // Primero cargar las categorías
+  await fetchCategorias()
+
+  // Luego cargar las IAs
+  await fetchIAs()
+})
 

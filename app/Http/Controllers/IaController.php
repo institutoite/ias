@@ -3,17 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ia;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 
 class IaController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+{ /**
+    * Obtener todas las inteligencias artificiales con sus categorías
+    *
+    * @return \Illuminate\Http\Response
+    */
+   public function index()
+   {
+       $ias = IA::with('categoria')->get();
+       return response()->json($ias);
+   }
+
+   /**
+    * Obtener todas las categorías
+    *
+    * @return \Illuminate\Http\Response
+    */
+   public function categorias()
+   {
+       $categorias = Categoria::all();
+       return response()->json($categorias);
+   }
+
+   /**
+    * Obtener IAs por categoría
+    *
+    * @param int $categoriaId
+    * @return \Illuminate\Http\Response
+    */
+    public function porCategoria($categoriaId)
     {
-        $ias = Ia::all();
+        $ias = IA::with('categoria')
+                    ->where('categoria_id', $categoriaId)
+                    ->get();
+        
         return response()->json($ias);
     }
     /**

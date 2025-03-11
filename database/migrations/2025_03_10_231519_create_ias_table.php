@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string("logo",100);
             $table->string("descripcion",150);
             $table->boolean("estado");
+            $table->string("url",100);
+            $table->unsignedBigInteger("categoria_id");
+            $table->foreign("categoria_id")->references("id")->on("categorias");
             $table->timestamps();
         });
     }

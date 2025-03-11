@@ -14,11 +14,18 @@ class Ia extends Model
         'nombre',
         'logo',
         'descripcion',
-        'estado'
+        'estado',
+        'url',
+        'categoria_id'
     ];
     protected $casts = [
         'estado' => 'boolean',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id');
+    }
 }
