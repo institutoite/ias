@@ -116,56 +116,101 @@ class IaSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+<<<<<<< HEAD
                 'nombre' => 'Synthesia',
                 'logo' => 'ias/synthesia.png',
                 'descripcion' => 'Herramienta de IA para crear videos con avatares digitales a partir de texto.',
                 'estado' => true,
                 'categoria_id' => 3, // Edición de Video
                 'url' => 'https://www.synthesia.io',
+=======
+                'nombre' => 'Wondershare',
+                'logo' => 'ias/wondershare.png',
+                'descripcion' => 'Herramientas de software para edición de video, PDF, recuperación de datos y más.',
+                'estado' => true,
+>>>>>>> d8071c0d9f1951c4a0825e03094b034059fbb194
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
+<<<<<<< HEAD
                 'nombre' => 'Jasper AI',
                 'logo' => 'ias/jasper.png',
                 'descripcion' => 'Herramienta de generación de contenido para marketing, blogs y redacción publicitaria.',
                 'estado' => true,
                 'categoria_id' => 1, // Generación de Texto
                 'url' => 'https://www.jasper.ai',
+=======
+                'nombre' => 'Digiface',
+                'logo' => 'ias/digiface.png',
+                'descripcion' => 'Plataforma de inteligencia artificial especializada en reconocimiento facial y análisis de imágenes.',
+                'estado' => true,
+>>>>>>> d8071c0d9f1951c4a0825e03094b034059fbb194
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
+<<<<<<< HEAD
                 'nombre' => 'Runway ML',
                 'logo' => 'ias/runway.png',
                 'descripcion' => 'Plataforma de IA para creativos que permite editar videos, generar imágenes y más.',
                 'estado' => true,
                 'categoria_id' => 3, // Edición de Video
                 'url' => 'https://runwayml.com',
+=======
+                'nombre' => 'Minimax AI',
+                'logo' => 'ias/minimaxai.png',
+                'descripcion' => 'Solución de IA para optimización y automatización de procesos empresariales.',
+                'estado' => true,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+
+            [
+                'nombre' => 'Viggle',
+                'logo' => 'ias/viggle.png',
+                'descripcion' => 'Herramienta de IA para análisis de datos en tiempo real y toma de decisiones inteligentes.',
+                'estado' => true,
+>>>>>>> d8071c0d9f1951c4a0825e03094b034059fbb194
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
+<<<<<<< HEAD
                 'nombre' => 'Descript',
                 'logo' => 'ias/descript.png',
                 'descripcion' => 'Herramienta de edición de audio y video mediante transcripción y síntesis de voz.',
                 'estado' => true,
                 'categoria_id' => 4, // Generación de Audio y Voz
                 'url' => 'https://www.descript.com',
+=======
+                'nombre' => 'Krea',
+                'logo' => 'ias/krea.png',
+                'descripcion' => 'Plataforma de IA para la creación de contenido visual y diseño generativo.',
+                'estado' => true,
+>>>>>>> d8071c0d9f1951c4a0825e03094b034059fbb194
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
+<<<<<<< HEAD
                 'nombre' => 'Hugging Face',
                 'logo' => 'ias/huggingface.png',
                 'descripcion' => 'Plataforma de modelos de lenguaje natural (NLP) y herramientas de IA de código abierto.',
                 'estado' => true,
                 'categoria_id' => 1, // Generación de Texto
                 'url' => 'https://huggingface.co',
+=======
+                'nombre' => 'LivePortrait',
+                'logo' => 'ias/liveportrait.png',
+                'descripcion' => 'Tecnología de IA que genera retratos animados a partir de imágenes estáticas.',
+                'estado' => true,
+>>>>>>> d8071c0d9f1951c4a0825e03094b034059fbb194
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
+<<<<<<< HEAD
                 'nombre' => 'Replika',
                 'logo' => 'ias/replika.png',
                 'descripcion' => 'Chatbot emocional diseñado para ser un compañero virtual y brindar soporte emocional.',
@@ -306,6 +351,17 @@ class IaSeeder extends Seeder
                 'updated_at' => now()
             ],
         ]; 
+=======
+                'nombre' => 'Adobe Express',
+                'logo' => 'ias/adobe_express.png',
+                'descripcion' => 'Herramienta de diseño gráfico y creación de contenido basada en IA, fácil de usar y en la nube.',
+                'estado' => true,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+         ];
+ 
+>>>>>>> d8071c0d9f1951c4a0825e03094b034059fbb194
          // Insertar datos
          foreach ($ias as $ia) {
              Ia::create($ia);
