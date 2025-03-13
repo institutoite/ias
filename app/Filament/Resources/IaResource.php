@@ -44,7 +44,7 @@ class IaResource extends Resource
                     ->required()
                     ->image() // Asegura que solo se suban archivos de imagen
                     ->maxSize(2000) // Tamaño máximo en KB (1 MB en este caso)
-                    ->directory('logos') // Carpeta donde se guardará la imagen en el almacenamiento
+                    ->directory('ias') // Carpeta donde se guardará la imagen en el almacenamiento
                     ->visibility('public') // Visibilidad del archivo (público o privado)
                     ->preserveFilenames() // Conserva el nombre original del archivo
                     ->imageResizeTargetWidth('500') // Redimensionar la imagen a un ancho específico
