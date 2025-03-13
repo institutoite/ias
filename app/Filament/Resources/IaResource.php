@@ -6,13 +6,14 @@ use App\Filament\Resources\IaResource\Pages;
 use App\Filament\Resources\IaResource\RelationManagers;
 use App\Models\Ia;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Forms\Components\FileUpload;
 
 class IaResource extends Resource
 {
@@ -24,9 +25,20 @@ class IaResource extends Resource
     {
         return $form
             ->schema([
+                
                 Forms\Components\TextInput::make('nombre')
                     ->required()
                     ->maxLength(25),
+                Select::make('categoria_id')
+                    ->label('Categoria')
+                    ->relationship('categoria', 'categoria') // Asumiendo que la relación es 'categoria' y el campo a mostrar es 'nombre'
+                    ->required(),
+                Forms\Components\TextInput::make('url')
+                    ->required()
+                    ->maxLength(100),
+                Forms\Components\TextInput::make('descripcion')
+                    ->required()
+                    ->maxLength(150),
                 FileUpload::make('logo')
                     ->label('Logo')
                     ->required()
@@ -37,11 +49,10 @@ class IaResource extends Resource
                     ->preserveFilenames() // Conserva el nombre original del archivo
                     ->imageResizeTargetWidth('500') // Redimensionar la imagen a un ancho específico
                     ->imageResizeTargetHeight('500'), // Redimensionar la imagen a una altura específica
-                Forms\Components\TextInput::make('descripcion')
-                    ->required()
-                    ->maxLength(150),
+                
                 Forms\Components\Toggle::make('estado')
                     ->required(),
+               
             ]);
     }
 
@@ -49,6 +60,9 @@ class IaResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('categoria_id')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('logo')
@@ -57,6 +71,8 @@ class IaResource extends Resource
                     ->searchable(),
                 Tables\Columns\IconColumn::make('estado')
                     ->boolean(),
+                Tables\Columns\TextColumn::make('url')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
