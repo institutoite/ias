@@ -92,6 +92,7 @@ function renderIAs(iasToRender) {
 
     // Usar la URL completa para las imágenes
     const logoUrl = ia.logo.startsWith("http") ? ia.logo : `/storage/${ia.logo}`
+    console.log(logoUrl);
 
     card.innerHTML = `
             <div class="ia-logo">

@@ -256,7 +256,6 @@
     <script src="{{ asset('home/js/script.js') }}"></script>
     <script src="{{ asset('homeprincipal/js/hero.js') }}"></script>
     <script src="{{ asset('homeprincipal/js/contactos.js') }}"></script>
-    <script async src="https://www.tiktok.com/embed.js"></script>
 </body>
 </html>
 
